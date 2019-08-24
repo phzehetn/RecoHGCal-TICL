@@ -11,7 +11,8 @@
 
 ### Models
 
-- `tf_models/energy_id_v*.pb`: TensorFlow model for trackster energy regression and ID.
-  - `v0`: Simple CNN. It does not yet contain the energy regression. The neutral hadron, ambiguous and unknown probabilities are set to a constant value of 0. See the [talk](https://indico.cern.ch/event/799486/contributions/3492052/subcontributions/284302/attachments/1875750/3088524/MLforTICL_Scrum.pdf) at the [Patatrack Hackathon](https://indico.cern.ch/event/799486) for more info. Input and output tensors:
+- `tf_models/energy_id_v*.pb`: TensorFlow model for trackster energy regression and particle ID.
+  - `v0`: Simple CNN-based approach. The neutral hadron, ambiguous and unknown probabilities are set to a constant value of 0. See the [talk at the Reco/AT meeting](https://indico.cern.ch/event/841640/contributions/3534140/attachments/1896780/3129591/2019-08-23_rieger_hgcal_ticl_eid.pdf) for more info. Input and output tensors:
     - `"input"`: Input tensor with dimension `batch x 50 (layers) x 10 (clusters) x 3 (features)`.
-    - `"output/id_probabilities"`: Output tensor representing particle ID "probabilities" (from a softmax output) with dimension ` batch x 7`. The probabiltities refer to photon, electron, muon, charged hadron, neutral hadron, ambiguous and unknown cases (in that order).
+    - `"output/id_probabilities"`: Output tensor with dimension `batch x 7` representing particle ID "probabilities" (from a softmax output). The probabiltities refer to photon, electron, muon, charged hadron, neutral hadron, ambiguous and unknown cases (in that order).
+    - `"output/regressed_energy"`: Output tensor with dimension `batch x 1` representing the regressed energy value for the trackster.
